@@ -1,29 +1,4 @@
---[[
-	AIMBOT FFA CLIENT
-	Place inside StarterPlayer > StarterPlayerScripts
 
-	Includes:
-	- Right Shift menu
-	- Aim lock
-	- Target-part selection
-	- Aim FOV and smoothness
-	- Box ESP
-	- Skeleton ESP
-	- Name, health, distance and equipped-tool ESP
-	- Player selector
-	- Teleport behind selected player
-	- Teleport keybind
-	- WalkSpeed
-	- Fly
-	- Noclip
-	- Hitbox cube visualiser
-	- SW2/BulletFactory silent-aim target adapter
-
-	Important:
-	This is designed for mechanics intentionally available inside your own game.
-]]
-
---// SERVICES
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -32,20 +7,19 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 
---// PLAYER
+
 
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
---// CLEAN OLD COPY
+
 
 local oldGui = PlayerGui:FindFirstChild("AimbotFFA")
 if oldGui then
 	oldGui:Destroy()
 end
 
---// CONFIGURATION
 
 local Config = {
 	MenuOpen = true,
@@ -123,7 +97,7 @@ local ColorNames = {
 	"White",
 }
 
---// OPTIONAL SW2 BULLET MODULE
+
 
 local BulletFactory
 
@@ -137,7 +111,6 @@ pcall(function()
 	end
 end)
 
---// UTILITY
 
 local function getCharacter(player)
 	local character = player and player.Character
@@ -264,7 +237,7 @@ local function getClosestTarget(fov, maxDistance, wallCheck, partName)
 	return closestPlayer, closestPart
 end
 
---// GUI HELPERS
+
 
 local function create(className, properties)
 	local object = Instance.new(className)
@@ -940,7 +913,6 @@ createTab("Visuals")
 createTab("Player")
 createTab("Teleport")
 
---// AIM PAGE
 
 local aimSection = createSection(AimPage, "Aim Assist")
 
@@ -1036,7 +1008,7 @@ createSlider(
 	end
 )
 
---// VISUAL PAGE
+
 
 local espSection = createSection(VisualPage, "ESP")
 
@@ -2180,10 +2152,3 @@ end)
 RunService.Heartbeat:Connect(function()
 	updateMovement()
 end)
-
-print("[ZONE6IX] Aimbot FFA client loaded")
-print("[ZONE6IX] Right Shift opens/closes the menu")
-print("[ZONE6IX] Teleport key is T")
-print(
-	"[ZONE6IX] Silent adapter available at _G.Zone6ixSilentAim"
-)
